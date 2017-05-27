@@ -1,0 +1,14 @@
+binary/
+chroot/
+local
+.build
+auto
+cache
+server-rootfs.tar.gz
+chip-u-boot
+chroot.packages.install
+live-image-armhf.tar.tar
+live-image-armhf.contents
+rootfs.tar
+chroot.files
+chroot.packages.live
