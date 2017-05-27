@@ -27,7 +27,7 @@ initramfs-tools
 chip-dt-overlays
 chip-power 
 chip-hwtest 
-#rtl8723bs-bt
-rtl8723ds-mp-driver-common
-rtl8723ds-mp-driver-modules-4.4.30-pro
+rtl8723bs-bt
+rtl8723bs-mp-driver-common
+rtl8723bs-mp-driver-modules-4.4.13-ntc-mlc
 mtd-utils-mlc
