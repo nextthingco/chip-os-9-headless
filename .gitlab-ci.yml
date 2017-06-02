@@ -16,8 +16,10 @@ variables:
 build:
   stage: build
   script:
+    - docker rm $(docker ps -aq)
+    - docker rmi -f $(docker images -aq)
     - docker pull $BUILD_CONTAINER_IMAGE
-    - docker run --privileged -v $PWD:/opt/builddir -w /opt/builddir --rm computermouth/sudeb /bin/bash -c "sudo apt-get update -qq && sudo apt-get install -y tar live-build qemu-user-static && pushd /tmp && wget $LINARO_URL && tar -xf *.xz && PATH=$PWD/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf/bin:$PWD/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf/bin:$PATH && popd && ./build.sh"
+    - docker run --privileged -v $PWD:/opt/builddir -w /opt/builddir --rm $BUILD_CONTAINER_IMAGE /bin/bash -c "sudo apt-get update -qq && sudo apt-get install -y tar live-build qemu-user-static && pushd /tmp && wget $LINARO_URL && tar -xf *.xz && PATH=$PWD/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf/bin:$PWD/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf/bin:$PATH && popd && ./build.sh"
 
 upload:
   stage: upload
