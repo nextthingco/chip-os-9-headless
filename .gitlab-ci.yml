@@ -5,26 +5,43 @@ services:
 
 stages:
   - build
+  - upload
 
 variables:
-  BUILD_CONTAINER_IMAGE: $CI_REGISTRY/kaplan2539/baumeister
-
-before_script:
-  - echo "CI_BUILD_ID=$CI_BUILD_ID"
-  - echo "CI_REGISTRY=$CI_REGISTRY"
-  - echo "CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE"
-  - echo "CI_PROJECT_URL=$CI_PROJECT_URL"
-  - echo "CI_BUILD_REF_NAME=$CI_BUILD_REF_NAME"
-  - echo "BUILD_CONTAINER_IMAGE=$BUILD_CONTAINER_IMAGE"
-  - apk update && apk add wget
+  BUILD_CONTAINER_IMAGE: computermouth/sudeb:stretch
+  LINARO_URL: https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/arm-linux-gnueabihf/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf.tar.xz
+  UPLOAD_CONTAINER: $CI_REGISTRY/nextthingco/ci-tools:stable
+  ARTIFACT_0: /upload/rootfs.tar
 
 build:
   stage: build
   script:
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker pull $BUILD_CONTAINER_IMAGE
-    - ./build.sh
+    - docker run --privileged -v $PWD:/opt/builddir -w /opt/builddir\
+ --rm computermouth/sudeb /bin/bash -c                       \
+ "sudo apt-get update -qq                                  &&\
+ sudo apt-get install -y tar live-build qemu-user-static   &&\
+ pushd /tmp                                                &&\
+ wget $LINARO_URL                                          &&\
+ tar -xf *.xz                                              &&\
+ PATH=$PWD/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf/bin:$PWD/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf/bin:$PATH &&\
+ popd                                                      &&\
+ ./build.sh"
 
-  artifacts:
-    paths:
-      - output/
+upload:
+  stage: upload
+  script:
+    - echo "UPLOAD!!!"
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker pull $UPLOAD_CONTAINER
+    - docker run
+      -e GHVAR_AWS_ID=${GHVAR_AWS_ID}
+      -e GHVAR_AWS_PW=${GHVAR_AWS_PW}
+      -e GHVAR_AWS_REGION=${GHVAR_AWS_REGION}
+      -e CI_PROJECT_NAME=${CI_PROJECT_NAME}
+      -e CI_BUILD_REF_NAME=${CI_BUILD_REF_SLUG}
+      -e CI_BUILD_ID=${CI_BUILD_ID}
+      -e ARTIFACT_0=${ARTIFACT_0}
+      --rm -v $PWD:/upload -w /upload
+      $UPLOAD_CONTAINER ci-s3-upload
+      ${ARTIFACT_0}
