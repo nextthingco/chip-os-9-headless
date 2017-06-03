@@ -9,6 +9,8 @@ then
 	sudo mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc
 fi
 
+sudo sed -i 's|#!/bin/sh|#!/bin/sh -x|g' /usr/lib/live/build/*
+
 sudo lb build
 rm -rf live-image-armhf.tar.tar
 pushd binary
