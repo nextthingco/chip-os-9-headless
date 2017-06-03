@@ -4,6 +4,11 @@
 #        sudo sed -s -i 's%tar ${LIVE_IMAGE_NAME}-${LIVE_IMAGE_ARCHITECTURE}.%tar binary%' /usr/lib/live/build/binary_tar
 #fi
 
+if ! mount | grep binfmt_misc;
+then
+	sudo mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc
+fi
+
 sudo lb build
 rm -rf live-image-armhf.tar.tar
 pushd binary
