@@ -17,7 +17,7 @@ pushd binary
 sudo tar -cf ../rootfs.tar .
 popd
 
-CHIP_UBOOT_BRANCH=${CHIP_UBOOT_BRANCH:-production-mlc}
+CHIP_UBOOT_BRANCH=${CHIP_UBOOT_BRANCH:-ww/2016.01/next}
 
 git clone https://github.com/nextthingco/chip-u-boot
 pushd chip-u-boot
