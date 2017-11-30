@@ -1,4 +1,0 @@
-#!/bin/bash
-
-systemctl enable chip-local
-systemctl enable ubihealthd

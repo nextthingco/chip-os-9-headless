@@ -1,8 +1,8 @@
 # config/binary - options for live-build(7), binary stage
 
 # $LB_BINARY_FILESYSTEM: set image filesystem
-# (Default: ext3)
-LB_BINARY_FILESYSTEM="ext3"
+# (Default: none)
+LB_BINARY_FILESYSTEM="none"
 
 # $LB_APT_INDICES: set apt/aptitude generic indices
 # (Default: false)
@@ -20,9 +20,9 @@ LB_BOOTAPPEND_INSTALL=""
 # (Default: empty)
 LB_BOOTAPPEND_LIVE_FAILSAFE="boot=live components memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal"
 
-# $LB_BOOTLOADER: set bootloader
+# $LB_BOOTLOADERS: set bootloaders
 # (Default: )
-LB_BOOTLOADER=""
+LB_BOOTLOADERS=""
 
 # $LB_CHECKSUMS: set checksums
 # (Default: md5)
@@ -78,16 +78,16 @@ LB_HDD_PARTITION_START=""
 LB_ISO_APPLICATION="Debian Live"
 
 # $LB_ISO_PREPARER: set iso preparer
-# (Default: live-build $VERSION; http://live-systems.org/devel/live-build)
-LB_ISO_PREPARER="live-build $VERSION; http://live-systems.org/devel/live-build"
+# (Default: live-build 1:20170213; http://live-systems.org/devel/live-build)
+LB_ISO_PREPARER="live-build 1:20170213; http://live-systems.org/devel/live-build"
 
 # $LB_ISO_PUBLISHER: set iso publisher
 # (Default: Live Systems project; http://live-systems.org/; debian-live@lists.debian.org)
 LB_ISO_PUBLISHER="Live Systems project; http://live-systems.org/; debian-live@lists.debian.org"
 
 # $LB_ISO_VOLUME: set iso volume (max 32 chars)
-# (Default: Debian stretch $(date +%Y%m%d-%H:%M))
-LB_ISO_VOLUME="Debian stretch $(date +%Y%m%d-%H:%M)"
+# (Default: Debian stretch 20171018-14:56)
+LB_ISO_VOLUME="Debian stretch 20171018-14:56"
 
 # $LB_JFFS2_ERASEBLOCK: set jffs2 eraseblock size
 # (Default: unset)
@@ -142,11 +142,11 @@ LB_NET_COW_SERVER=""
 LB_NET_TARBALL="true"
 
 # $LB_FIRMWARE_BINARY: include firmware packages in debian-installer
-# (Default: false)
+# (Default: true)
 LB_FIRMWARE_BINARY="false"
 
 # $LB_FIRMWARE_CHROOT: include firmware packages in debian-installer
-# (Default: false)
+# (Default: true)
 LB_FIRMWARE_CHROOT="false"
 
 # $LB_SWAP_FILE_PATH: set swap file path

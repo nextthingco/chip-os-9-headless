@@ -1,16 +1,8 @@
 #!/bin/bash
 
-# Load g_serial driver and enable getty on it
-echo -e "\n# Virtual USB serial gadget\nttyGS0\n\n" >>/etc/securetty
-sed -i 's/After=rc-local.service/#After=rc-local.service/' /lib/systemd/system/serial-getty@.service
-ln -s /lib/systemd/system/serial-getty@.service /etc/systemd/system/getty.target.wants/serial-getty@ttyGS0.service
-
-#version stuff
-echo -e "CHIP OS ${BRANCH} build ${BUILD} rev ${GITHASH}\n" | tee /etc/chip_build_info.txt
-echo -e "$(cat /etc/os-release)\n\
-BUILD_ID=$(date)\n\
-VARIANT=\"CHIP OS\"\n\
-VARIANT_ID=$(cat /etc/os-variant)\n" | tee /etc/os-release
+echo "########################################################################"
+echo "#                                 misc                                 #"
+echo "########################################################################"
 
 chmod u+s `which ping`
 
@@ -19,3 +11,4 @@ apt-get autoclean
 apt-get autoremove -y
 rm -rf /var/lib/apt/lists/*
 rm -rf /usr/lib/locale/*
+rm -rf /live

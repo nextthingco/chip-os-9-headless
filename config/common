@@ -17,7 +17,7 @@ LB_APT_HTTP_PROXY=""
 LB_APT_PIPELINE=""
 
 # $LB_APT_RECOMMENDS: set apt/aptitude recommends
-# (Default: true)
+# (Default: false)
 LB_APT_RECOMMENDS="true"
 
 # $LB_APT_SECURE: set apt/aptitude security
@@ -77,8 +77,8 @@ LB_LOSETUP="losetup"
 LB_MODE="debian"
 
 # $LB_SYSTEM: set system type
-# (Default: live)
-LB_SYSTEM="live"
+# (Default: normal)
+LB_SYSTEM="normal"
 
 # $LB_TASKSEL: set tasksel program
 # (Default: apt)
@@ -113,7 +113,7 @@ _QUIET="false"
 # Internal stuff (FIXME)
 APT_OPTIONS="--yes"
 APTITUDE_OPTIONS="--assume-yes"
-DEBOOTSTRAP_OPTIONS=""
+DEBOOTSTRAP_OPTIONS="--no-merged-usr"
 DEBOOTSTRAP_SCRIPT=""
-GZIP_OPTIONS="-6 --rsyncable"
+GZIP_OPTIONS="-6  --rsyncable"
 ISOHYBRID_OPTIONS=""
