@@ -28,12 +28,12 @@ grep -q '^\[keyfile\]' "${NM_CONF}" || \
 echo -e "$(cat ${NM_CONF})\n\n[keyfile]\nunmanaged-devices=interface-name:wlan1" | tee ${NM_CONF}
 
 #network-manager default to link-local on usb0 cdc_ethernet
-mkdir -p /etc/NetworkManager/system-connections/
-echo "${NM_USB0_LINKLOCAL_CONNECTION}" \
- | tee /etc/NetworkManager/system-connections/usb0_linklocal &> /dev/null
+#mkdir -p /etc/NetworkManager/system-connections/
+#echo "${NM_USB0_LINKLOCAL_CONNECTION}" \
+# | tee /etc/NetworkManager/system-connections/usb0_linklocal &> /dev/null
 
-chmod 755 /etc/NetworkManager/system-connections
-chmod 600 /etc/NetworkManager/system-connections/usb0_linklocal
+#chmod 755 /etc/NetworkManager/system-connections
+#chmod 600 /etc/NetworkManager/system-connections/usb0_linklocal
 
 #hack to set back kernel/printk level to 4 after wifi modules have been loaded:
 sed -i -e '/ExecStart=.*/ aExecStartPost=/bin/bash -c "/bin/echo 4 >/proc/sys/kernel/printk"' /lib/systemd/system/wpa_supplicant.service

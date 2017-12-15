@@ -8,6 +8,7 @@ fi
 sudo lb build
 rm -rf live-image-armhf.tar.tar rootfs.tar
 pushd binary
+sudo rm -rf live md5sum.txt
 sudo tar -cf ../rootfs.tar .
 popd
 

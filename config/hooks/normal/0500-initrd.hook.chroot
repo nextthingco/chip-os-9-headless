@@ -4,7 +4,6 @@ echo "########################################################################"
 echo "#                               initrd                                 #"
 echo "########################################################################"
 
-
 #this is needs to be done after flash-kernel and before a kernel.deb is installed
 echo "NextThing C.H.I.P." > /etc/flash-kernel/machine
 #echo "NextThing C.H.I.P. Pro" >> /etc/flash-kernel/machine
@@ -32,8 +31,5 @@ cp boot/dtbs/${version}/sun5i-r8-chip.dtb boot/
 # redo live-build's default flash-kernel diversion
 # this whole hack here is really dumb
 # but seems preferable to editing users' live-build install
-
-apt-get install -y --reinstall linux-image-$version
-depmod -ae -F /boot/System.map* $version
 
 rm -rf /boot/*.bak
