@@ -19,4 +19,6 @@ rtl8723bs-bt
 rtl8723bs-mp-driver-common
 rtl8723bs-mp-driver-modules-4.4.13-ntc-mlc
 
-chip-mali-modules-4.4.13-ntc-mlc
+#chip-mali-modules-4.4.13-ntc-mlc
+#xserver-xorg-video-armsoc
+#chip-mali-userspace
