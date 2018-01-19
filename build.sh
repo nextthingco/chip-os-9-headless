@@ -23,8 +23,13 @@ git apply ../0001-compiler-.h-sync-include-linux-compiler-.h-with-Linu.patch
 make ${UBOOT_EXTRA_OPTS} ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- CHIP_defconfig
 make ${UBOOT_EXTRA_OPTS} ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 
-## To create image/flash:
-##
-## sudo ./chip-create-nand-image.sh ../chip-pro-debian-9/chip-u-boot ../chip-pro-debian-9/rootfs.tar output
-## sudo chown -R $USER:$USER output
-## ./chip-update-firmware.sh -L output
+popd
+
+git clone https://github.com/nextthingco/chip-tools
+pushd chip-tools
+
+sudo ./chip-create-nand-image.sh ../chip-u-boot ../rootfs.tar output
+sudo chown -R 1000:1000 output
+#./chip-update-firmware.sh -L output
+
+popd
