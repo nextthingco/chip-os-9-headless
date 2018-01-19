@@ -28,8 +28,9 @@ popd
 git clone https://github.com/nextthingco/chip-tools
 pushd chip-tools
 
-sudo ./chip-create-nand-image.sh ../chip-u-boot ../rootfs.tar output
+sudo ./chip-create-nand-images.sh ../chip-u-boot ../rootfs.tar output
 sudo chown -R 1000:1000 output
+find output
 #./chip-update-firmware.sh -L output
 
 popd
