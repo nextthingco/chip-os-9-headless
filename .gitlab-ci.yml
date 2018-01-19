@@ -14,6 +14,7 @@ variables:
   ARTIFACT_0: /upload/rootfs.tar
 
 build:
+  tags: [qemu-arm]
   stage: build
   script:
     - docker pull $BUILD_CONTAINER_IMAGE
