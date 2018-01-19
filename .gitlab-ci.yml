@@ -17,7 +17,7 @@ build:
   stage: build
   script:
     - docker pull $BUILD_CONTAINER_IMAGE
-    - docker run --privileged -v $PWD:/opt/builddir -w /opt/builddir --rm $BUILD_CONTAINER_IMAGE /bin/bash -c "sudo apt-get update -qq && sudo apt-get install -y git crossbuild-essential-armhf build-essential tar xz-utils live-build qemu-user-static device-tree-compiler bc mtd-utils sunxi-tools u-boot-tools android-tools-fastboot android-tools-fsutils && ./build.sh"
+    - docker run --privileged -v $PWD:/opt/builddir -w /opt/builddir --rm $BUILD_CONTAINER_IMAGE /bin/bash -c "sudo apt-get update -qq && sudo apt-get install -y git crossbuild-essential-armhf build-essential tar xz-utils live-build qemu-user-static device-tree-compiler bc mtd-utils sunxi-tools u-boot-tools adroid-tools-fastboot img2simg && ./build.sh"
     - ls
   artifacts:
     expire_in: 1 day
