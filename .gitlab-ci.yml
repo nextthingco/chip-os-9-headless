@@ -5,6 +5,7 @@ services:
 
 stages:
   - build
+  - howitzer
   - upload
 
 variables:
@@ -22,7 +23,7 @@ build:
     - docker run --privileged -v $PWD:/opt/builddir -w /opt/builddir --rm $BUILD_CONTAINER_IMAGE /bin/bash -c "sudo apt-get update -qq && sudo apt-get install -y git crossbuild-essential-armhf build-essential tar xz-utils live-build qemu-user-static device-tree-compiler bc mtd-utils sunxi-tools u-boot-tools android-tools-fastboot img2simg && ./build.sh"
     - ls
   artifacts:
-    expire_in: 1 day
+    expire_in: 20 minutes
     paths:
       - chip-tools
 
@@ -35,12 +36,12 @@ howitzer:
     - cd chip-tools
     - ls output
     - /bin/bash ./chip-update-firmware.sh -L output/ -F Toshiba_4G_MLC
-    - howitzer nand ${NAND_TYPE} chp fel.chp chp fastboot.chp -f ${ARTIFACT_0}
+    - howitzer nand Toshiba_4G_MLC chp fel.chp chp fastboot.chp -f ${ARTIFACT_0}
     - ls
     - rm -rf fel.chp fastboot.chp
     - ls
     - /bin/bash ./chip-update-firmware.sh -L output/ -F Hynix_8G_MLC
-    - howitzer nand ${NAND_TYPE} chp fel.chp chp fastboot.chp -f ${ARTIFACT_1}
+    - howitzer nand Hynix_8G_MLC chp fel.chp chp fastboot.chp -f ${ARTIFACT_1}
     - rm -rf fel.chp fastboot.chp
     - ls
   artifacts:
