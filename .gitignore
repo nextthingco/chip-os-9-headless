@@ -12,3 +12,4 @@ live-image-armhf.contents
 rootfs.tar
 chroot.files
 chroot.packages.live
+chip-tools
