@@ -14,7 +14,7 @@ variables:
   UPLOAD_CONTAINER: $CI_REGISTRY/nextthingco/ci-tools:stable
   ARTIFACT_0: output/${CI_BUILD_REF_SLUG}-${CI_PROJECT_NAME}-b${CI_PIPELINE_ID}-Toshiba_4G_MLC.chp
   ARTIFACT_1: output/${CI_BUILD_REF_SLUG}-${CI_PROJECT_NAME}-b${CI_PIPELINE_ID}-Hynix_8G_MLC.chp
-  CHECK_DEPS: no
+  CHECK_DEPS: none
 
 build:
   tags: [qemu-arm]
