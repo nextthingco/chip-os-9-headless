@@ -40,7 +40,7 @@ howitzer:
     - ls
     - rm -rf fel.chp fastboot.chp
     - ls
-    - /bin/bash ./chip-update-firmware.sh -L output/ -F Hynix_8G_MLC
+    - /bin/bash CHECK_DEPS=no ./chip-update-firmware.sh -L output/ -F Hynix_8G_MLC
     - howitzer nand Hynix_8G_MLC chp fel.chp chp fastboot.chp -f ${ARTIFACT_1}
     - rm -rf fel.chp fastboot.chp
     - ls
