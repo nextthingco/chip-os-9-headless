@@ -45,11 +45,13 @@ howitzer:
     - howitzer nand Hynix_8G_MLC chp fel.chp chp fastboot.chp -f ${ARTIFACT_1}
     - rm -rf fel.chp fastboot.chp
     - ls
+    - pwd
   artifacts:
     expire_in: 1 day
     paths:
-    - ${ARTIFACT_0}
-    - ${ARTIFACT_1}
+    - /chip-tools/${ARTIFACT_0}
+    - ./${ARTIFACT_0}
+    - ./${ARTIFACT_1}
 
 upload:
   stage: upload
