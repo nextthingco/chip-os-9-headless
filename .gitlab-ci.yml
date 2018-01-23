@@ -46,14 +46,12 @@ howitzer:
     - rm -rf fel.chp fastboot.chp
     - ls
     - pwd
+    - mv *.chp ../
   artifacts:
     expire_in: 1 day
     paths:
-    - /builds/nextthingco/chip-os-9-headless/chip-tools/${ARTIFACT_0}
-    - README.md
-    - chip-tools
-    - ./${ARTIFACT_0}
-    - ./${ARTIFACT_1}
+    - ${ARTIFACT_0}
+    - ${ARTIFACT_1}
 
 upload:
   stage: upload
