@@ -12,8 +12,8 @@ variables:
   BUILD_CONTAINER_IMAGE: computermouth/sudeb:stretch
   LINARO_URL: https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/arm-linux-gnueabihf/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf.tar.xz
   UPLOAD_CONTAINER: $CI_REGISTRY/nextthingco/ci-tools:stable
-  ARTIFACT_0: output/${CI_BUILD_REF_SLUG}-${CI_PROJECT_NAME}-b${CI_PIPELINE_ID}-Toshiba_4G_MLC.chp
-  ARTIFACT_1: output/${CI_BUILD_REF_SLUG}-${CI_PROJECT_NAME}-b${CI_PIPELINE_ID}-Hynix_8G_MLC.chp
+  ARTIFACT_0: ${CI_PROJECT_NAME}-${CI_BUILD_REF_SLUG}-b${CI_PIPELINE_ID}-Toshiba_4G_MLC.chp
+  ARTIFACT_1: ${CI_PROJECT_NAME}-${CI_BUILD_REF_SLUG}-b${CI_PIPELINE_ID}-Hynix_8G_MLC.chp
   CHECK_DEPS: none
 
 build:
